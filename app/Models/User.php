@@ -23,6 +23,7 @@ class User extends Authenticatable  implements MustVerifyEmail
      */
     protected $fillable = [
         'name',
+        'last_name',
         'email',
         'password',
     ];
@@ -57,7 +58,7 @@ class User extends Authenticatable  implements MustVerifyEmail
      */
     public function initials(): string
     {
-        return Str::of($this->name)
+        return Str::of($this->name .' ' . $this->last_name)
             ->explode(' ')
             ->take(2)
             ->map(fn ($word) => Str::substr($word, 0, 1))

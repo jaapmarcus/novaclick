@@ -17,6 +17,17 @@ return new class extends Migration
         $table->decimal('tax_percentage', 6, 4)->default(0); // optional
         $table->dateTime('trial_ends_at')->nullable(); // optional
         $table->text('extra_billing_information')->nullable(); // optional
+        $table->string('company_name')->nullable(); // optional
+        $table->string('address')->nullable(); // optional
+        $table->string('house_number')->nullable(); // optional
+        $table->string('house_number_suffix')->nullable(); // optional
+        $table->string('postal_code')->nullable(); // optional
+        $table->string('city')->nullable(); // optional
+        $table->string('country')->nullable(); // optional
+        $table->string('vat_number')->nullable(); // optional
+        $table->string('phone_number')->nullable(); // optional
+        $table->string('domain')->nullable(); // optional]
+        $table->string('places_id')->nullable(); // optional
         });
     }
 
