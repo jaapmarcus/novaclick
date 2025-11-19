@@ -15,6 +15,8 @@ Route::view('dashboard', 'dashboard')
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('subscribe', \App\Http\Controllers\SubscribeController::class)->name('subscribe');
+    Volt::route('invoices', 'invoices.index')->name('invoices.index');
+    Volt::route('invoices/{invoice}', 'invoices.show')->name('invoices.show');
 });
 
 Route::middleware(['auth'])->group(function () {
