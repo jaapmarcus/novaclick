@@ -79,4 +79,15 @@ class User extends Authenticatable  implements MustVerifyEmail
         return null;
     }
 
+    public function taxPercentage() {
+        return 21;
+    }
+
+    public function mollieCustomerFields() {
+    return [
+        'email' => $this->email,
+        'name' => $this->name,
+    ];
+}
+
 }
