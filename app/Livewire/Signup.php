@@ -18,6 +18,21 @@ class Signup extends Component
     public $vat_number = '';
     public $phone_number = '';
 
+    public function mount(){
+        //get user
+        $user = auth()->user();
+        //pre-fill company data if available
+        $this->company_name = $user->company_name;
+        $this->address = $user->address;
+        $this->house_number = $user->house_number;
+        $this->house_number_suffix = $user->house_number_suffix;
+        $this->postal_code = $user->postal_code;
+        $this->city = $user->city;
+        $this->country = $user->country;
+        $this->phone_number = $user->phone_number;
+
+    }
+
     public function render()
     {
         return view('livewire.signup');
@@ -46,6 +61,7 @@ class Signup extends Component
         $user->country = $this->country;
         $user->phone_number = $this->phone_number;
         $user->save();
+        dd('user updated');
         //redirect to payment page
         return redirect()->route('subscribe');
     }
