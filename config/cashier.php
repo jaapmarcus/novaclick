@@ -91,7 +91,7 @@ return [
         /**
          * The default description for the first payment, visible on both the invoice and the customer bank records.
          */
-        'description' => 'Welcome to '.config('app.name'),
+        'description' => 'Essential Plan abonnement',
     ],
 
     /**
@@ -130,7 +130,7 @@ return [
         /**
          * The default description for the update payment method, visible on both the invoice and the customer bank records.
          */
-        'description' => 'Update payment method for '.config('app.name'),
+        'description' => 'Aanpassen betaalmethode voor Essential Plan abonnement',
     ],
 
 ];

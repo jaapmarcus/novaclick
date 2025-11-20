@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9531d22fd6d0b8ffce29ba8651f685bc",
+    "content-hash": "2133db961738cd8214d2190cd24d087a",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -260,6 +260,88 @@
                 }
             ],
             "time": "2025-11-06T11:46:17+00:00"
+        },
+        {
+            "name": "danielebarbaro/laravel-vat-eu-validator",
+            "version": "v2.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/danielebarbaro/laravel-vat-eu-validator.git",
+                "reference": "954444985065116a21a67528c9e5e24e75453c97"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/danielebarbaro/laravel-vat-eu-validator/zipball/954444985065116a21a67528c9e5e24e75453c97",
+                "reference": "954444985065116a21a67528c9e5e24e75453c97",
+                "shasum": ""
+            },
+            "require": {
+                "ext-openssl": "*",
+                "ext-soap": "*",
+                "illuminate/contracts": "^10.0|^11.0|^12.0",
+                "illuminate/support": "^10.0|^11.0|^12.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "driftingly/rector-laravel": "^2.0",
+                "friendsofphp/php-cs-fixer": "^3.59",
+                "orchestra/testbench": "^8.1|^9.1|^10.0",
+                "phpstan/extension-installer": "^1.4",
+                "phpstan/phpstan": "^2.1",
+                "phpstan/phpstan-deprecation-rules": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0",
+                "phpunit/phpunit": "^10.5|^11.0",
+                "rector/rector": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "VatValidator": "Danielebarbaro\\LaravelVatEuValidator\\Facades\\VatValidatorFacade"
+                    },
+                    "providers": [
+                        "Danielebarbaro\\LaravelVatEuValidator\\VatValidatorServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Danielebarbaro\\LaravelVatEuValidator\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniele Barbaro",
+                    "email": "barbaro.daniele@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple package that validates EU VAT numbers against the central ec.europa.eu database",
+            "homepage": "https://github.com/danielebarbaro/laravel-vat-eu-validator",
+            "keywords": [
+                "danielebarbaro",
+                "laravel",
+                "laravel-validator",
+                "laravel-vat-eu-validator",
+                "laravel-vat-validator",
+                "vat",
+                "vat-eu-validator",
+                "vat-validator"
+            ],
+            "support": {
+                "source": "https://github.com/danielebarbaro/laravel-vat-eu-validator/tree/v2.0.8"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/danielebarbaro",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-10-09T09:32:56+00:00"
         },
         {
             "name": "dasprid/enum",

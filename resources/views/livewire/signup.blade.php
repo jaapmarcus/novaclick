@@ -8,7 +8,12 @@
             <flux:input type="text" name="house_number_suffix" :label="__('Toevoeging')" wire:model.defer="house_number_suffix" :placeholder="__('Toevoeging')" />
             <flux:input type="text" name="postal_code" :label="__('Postcode')" wire:model.defer="postal_code" :placeholder="__('Postcode')" required />
             <flux:input type="text" name="city" :label="__('Plaats')" wire:model.defer="city" :placeholder="__('Plaats')" required />
-            <flux:input type="text" name="country" :label="__('Land')" wire:model.defer="country" :placeholder="__('Land')" required />
+            <flux:select name="country" :label="__('Land')" wire:model.defer="country" required>
+                @foreach($countries as $code => $name)
+                    <flux:select.option value="{{ $code }}">{{ $name }}</flux:select.option>
+                @endforeach
+            </flux:select>
+            <flux:input type="text" name="vat_number" :label="__('BTW Nummer')" wire:model.defer="vat_number" :placeholder="__('BTW Nummer')" />
             <div class="flex items-center justify-end">
                 <flux:button type="submit" variant="primary" class="w-full" data-test="submit-invoice-details-button">
                     {{ __('Opslaan en Betalen') }}

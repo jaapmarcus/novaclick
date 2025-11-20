@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use Danielebarbaro\LaravelVatEuValidator\Facades\VatValidatorFacade as VatValidator;
+
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 
@@ -18,6 +20,12 @@ class Signup extends Component
     public $vat_number = '';
     public $phone_number = '';
 
+    public $countries = [
+        'NL' => 'Netherlands',
+        'BE' => 'Belgium',
+        // Add more countries as needed
+    ];
+
     public function mount(){
         //get user
         $user = auth()->user();
@@ -30,6 +38,9 @@ class Signup extends Component
         $this->city = $user->city;
         $this->country = $user->country;
         $this->phone_number = $user->phone_number;
+        $this->vat_number = $user->vat_number;
+
+
 
     }
 
@@ -48,7 +59,8 @@ class Signup extends Component
             'postal_code' => 'required|string|max:20',
             'city' => 'required|string|max:100',
             'country' => 'required|string|max:100',
-            'phone_number' => 'nullable|string|max:20',
+            'phone_number' => 'required|string|max:20',
+            'vat_number' => 'nullable|string|max:50|vat_number',
         ]);
         // update user with new data
         $user = auth()->user();
@@ -60,8 +72,9 @@ class Signup extends Component
         $user->city = $this->city;
         $user->country = $this->country;
         $user->phone_number = $this->phone_number;
+        $user->vat_number = $this->vat_number;
         $user->save();
-        dd('user updated');
+
         //redirect to payment page
         return redirect()->route('subscribe');
     }

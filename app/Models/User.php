@@ -81,8 +81,14 @@ class User extends Authenticatable  implements MustVerifyEmail
     }
 
     public function taxPercentage() {
-        return 21;
+        if($this -> country != 'NL' && $this -> vat_number != null)
+        {
+            return 0;
+        }else{
+            return 21;
+        }
     }
+
 
     public function mollieCustomerFields() {
     return [
