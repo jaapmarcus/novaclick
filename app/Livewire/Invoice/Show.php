@@ -20,7 +20,8 @@ class Show extends Component
         //look up invoice by id and user
         $user = auth()->user();
         $invoice = $user->findInvoiceOrFail($this->invoiceId);
-        dd($invoice);
-        return view('livewire.invoice.show');
+        return view('livewire.invoice.show', [
+            'invoice' => $invoice,
+        ]);
     }
 }
