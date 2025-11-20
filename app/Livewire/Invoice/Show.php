@@ -8,6 +8,7 @@ class Show extends Component
 {
     public function render()
     {
+        dd( 'invoice show' );
         return view('livewire.invoice.show');
     }
 }
