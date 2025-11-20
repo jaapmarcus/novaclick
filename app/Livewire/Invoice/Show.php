@@ -9,9 +9,11 @@ class Show extends Component
 
     public $invoiceId = null;
 
-    public function mount($invoiceId){
-        $this -> invoiceId = $invoiceId;
-        dd($this -> invoiceId);
+    public function mount($invoice)
+    {
+        dd($invoice);
+        $this->invoiceId = $invoice;
+
     }
 
     public function render()
