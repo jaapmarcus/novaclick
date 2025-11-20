@@ -13,8 +13,8 @@ class SubscribeController extends Controller
     public function __invoke()
     {
         $user = Auth::user();
-        $plan = 'Essential'; // The plan identifier from config/cashier_plans.php
-        $name = 'Essential'; // The name of the subscription
+        $plan = 'Novaclick'; // The plan identifier from config/cashier_plans.php
+        $name = 'Novaclick'; // The name of the subscription
         if(!$user->subscribed($name, $plan)) {
 
             $result = $user->newSubscription($name, $plan)->create();
