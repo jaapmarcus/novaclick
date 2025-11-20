@@ -13,6 +13,7 @@
                     <flux:select.option value="{{ $code }}">{{ $name }}</flux:select.option>
                 @endforeach
             </flux:select>
+            <flux:input type="text" name="phone_number" :label="__('Telefoonnummer')" wire:model.defer="phone_number" :placeholder="__('Telefoonnummer')" required />
             <flux:input type="text" name="vat_number" :label="__('BTW Nummer')" wire:model.defer="vat_number" :placeholder="__('BTW Nummer')" />
             <div class="flex items-center justify-end">
                 <flux:button type="submit" variant="primary" class="w-full" data-test="submit-invoice-details-button">

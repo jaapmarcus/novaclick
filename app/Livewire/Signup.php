@@ -62,6 +62,7 @@ class Signup extends Component
             'phone_number' => 'required|string|max:20',
             'vat_number' => 'nullable|string|max:50|vat_number',
         ]);
+
         // update user with new data
         $user = auth()->user();
         $user->company_name = $this->company_name;
