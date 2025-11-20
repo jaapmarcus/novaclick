@@ -94,10 +94,6 @@ class User extends Authenticatable  implements MustVerifyEmail
     return [
         'email' => $this->email,
         'name' => $this->company_name,
-        'address' => $this->address . ' ' . $this->house_number . ' ' . $this->house_number_suffix
-            . ', ' . $this->postal_code . ' ' . $this->city
-            . ', ' . $this->country,
-        'vatNumber' => $this->vat_number,
     ];
 }
 
