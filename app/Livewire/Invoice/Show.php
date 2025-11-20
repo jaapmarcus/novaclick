@@ -7,11 +7,11 @@ use Livewire\Component;
 class Show extends Component
 {
 
-    public $invoice_Id = null;
+    public $invoiceId = null;
 
-    public function mount($invoice_Id){
-        $this -> invoice_Id = $invoice_Id;
-        dd($this -> invoice_Id);
+    public function mount($invoiceId){
+        $this -> invoiceId = $invoiceId;
+        dd($this -> invoiceId);
     }
 
     public function render()
