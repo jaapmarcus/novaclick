@@ -9,6 +9,7 @@
             <flux:input type="text" name="postal_code" :label="__('Postcode')" wire:model.defer="postal_code" :placeholder="__('Postcode')" required />
             <flux:input type="text" name="city" :label="__('Plaats')" wire:model.defer="city" :placeholder="__('Plaats')" required />
             <flux:select name="country" :label="__('Land')" wire:model.defer="country" required>
+                <flux:select.option value="">{{ __('Selecteer een land') }}</flux:select.option>
                 @foreach($countries as $code => $name)
                     <flux:select.option value="{{ $code }}">{{ $name }}</flux:select.option>
                 @endforeach
