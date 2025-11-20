@@ -91,7 +91,7 @@ return [
         /**
          * The default description for the first payment, visible on both the invoice and the customer bank records.
          */
-        'description' => 'Essential Plan abonnement',
+        'description' => 'Novaclick abonnement',
     ],
 
     /**
@@ -130,7 +130,7 @@ return [
         /**
          * The default description for the update payment method, visible on both the invoice and the customer bank records.
          */
-        'description' => 'Aanpassen betaalmethode voor Essential Plan abonnement',
+        'description' => 'Aanpassen betaalmethode voor Novaclick abonnement',
     ],
 
 ];

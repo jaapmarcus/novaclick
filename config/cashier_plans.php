@@ -40,7 +40,7 @@ return [
          * The plan reference.
          */
         //names up for change
-        'Essential' => [
+        'Novaclick' => [
 
             /**
              * The amount to be billed each billing cycle.
@@ -74,7 +74,7 @@ return [
             /**
              * The text to appear on the invoice.
              */
-            'description' => 'Essential Plan abonnement',
+            'description' => 'NovaClick abonnement',
 
         /**
          * The chain of subscription OrderItem preprocessors. These are called right before the Subscription's
