@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('x_handle')->nullable()->after('places_id');
-            $table->string('facebook_handle')->nullable()->after('twitter_handle');
+            $table->string('facebook_handle')->nullable()->after('x_handle');
             $table->string('instagram_handle')->nullable()->after('facebook_handle');
             $table->string('tiktok_handle')->nullable()->after('instagram_handle');
             $table->string('linkedin_handle')->nullable()->after('tiktok_handle');
