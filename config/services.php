@@ -35,4 +35,13 @@ return [
         ],
     ],
 
+    'openprovider' => [
+        'username' => env('OPENPROVIDER_USERNAME'),
+        'password' => env('OPENPROVIDER_PASSWORD'),
+    ],
+
+    'google_places' => [
+        'api_key' => env('GOOGLE_PLACES_API_KEY'),
+    ],
+
 ];

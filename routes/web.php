@@ -18,6 +18,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Volt::route('invoices', 'invoices')->name('invoices.index');
     Volt::route('invoices/{invoice}', 'invoice.show')->name('invoices.show');
     Volt::route('signup', 'signup')->name('signup');
+    Volt::route('wizard/', 'wizard.info')->name('wizard.info');
+});
+
+Route::middleware(['auth', 'verified', 'admin'])->group(function () {
+    Volt::route('users', 'user')->name('users.index');
+    Volt::route('users/{id}/edit', 'user.edit')->name('users.edit');
+    Route::get('wordpress/login/{id}', [\App\Http\Controllers\WordpressController::class, 'login'])->name('wordpress.login');
 });
 
 Route::middleware(['auth'])->group(function () {

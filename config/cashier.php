@@ -107,7 +107,7 @@ return [
          * overridden per Plan. You can use a `{payment_id}` placeholder here to easily retrieve the Mollie payment in
          * your controller. Make sure you have set up a matching route.
          */
-        'redirect_url' => config('app.url'),
+        'redirect_url' => config('app.url').'/wizard/',
 
         /**
          * The default amount for change payment method. Can be overridden per Plan and is added to user balance.

@@ -64,3 +64,7 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+input[type="color"]::-webkit-color-swatch-wrapper{
+    padding: 0;
+}
