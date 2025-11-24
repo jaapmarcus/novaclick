@@ -120,7 +120,7 @@ class Info extends Component
         return;
     }
 
-    public function SaveWizard()
+    public function saveWizard()
     {
         //save all wizard data to database
         $user = auth()->user();
