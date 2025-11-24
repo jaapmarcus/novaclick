@@ -13,7 +13,7 @@ class Info extends Component
 {
     use WithFileUploads;
     public $step = 1;
-    public $totalSteps = 8;
+    public $totalSteps = 9;
 
     //info fields
     public $website_available = '';
