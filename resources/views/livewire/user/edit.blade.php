@@ -26,6 +26,13 @@
                     <flux:input name="phone" :label="__('Telefoonnummer')" type="text" :placeholder="__('Telefoonnummer')" wire:model="phone_number" />
                     <flux:input name="vat_number" :label="__('BTW-nummer')" type="text" :placeholder="__('BTW-nummer')" wire:model="vat_number" />
                     <flux:input name="email" :label="__('E-mailadres')" type="email" :placeholder="__('E-mailadres')" wire:model="email" />
+                    <flux:input name="x_handle" :label="__('X Handle')" type="text" :placeholder="__('X Handle')" wire:model="x_handle" />
+                    <flux:input name="facebook_handle" :label="__('Facebook Handle')" type="text" :placeholder="__('Facebook Handle')" wire:model="facebook_handle" />
+                    <flux:input name="instagram_handle" :label="__('Instagram Handle')" type="text" :placeholder="__('Instagram Handle')" wire:model="instagram_handle" />
+                    <flux:input name="tiktok_handle" :label="__('TikTok Handle')" type="text" :placeholder="__('TikTok Handle')" wire:model="tiktok_handle" />
+                    <flux:input name="linkedin_handle" :label="__('LinkedIn Handle')" type="text" :placeholder="__('LinkedIn Handle')" wire:model="linkedin_handle" />
+                    <flux:input name="youtube_handle" :label="__('YouTube Handle')" type="text" :placeholder="__('YouTube Handle')" wire:model="youtube_handle" />
+                    <flux:input name="whatsapp_handle" :label="__('WhatsApp Handle')" type="text" :placeholder="__('WhatsApp Handle')" wire:model="whatsapp_handle" />
                 </div>
             </div>
             <div class="relative">

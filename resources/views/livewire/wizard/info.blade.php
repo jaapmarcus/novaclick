@@ -154,7 +154,8 @@
     <flux:heading size="lg" level="3" class="mt-6">{{ __('Social Media') }}</flux:heading>
     <flux:separator variant="subtle" />
     <form wire:submit.prevent="saveWizard" class="flex flex-col gap-6 mt-4">
-        <flux:input type="text" name="twitter_handle" :label="__('Twitter Handle')" wire:model.defer="twitter_handle" :placeholder="__('bijv. @mijnbedrijf')"  spellcheck="false" autocomplete="off"/>
+        <flux:input type="text" name="whatsapp_handle" :label="__('WhatsApp Handle')" wire:model.defer="whatsapp_handle" :placeholder="__('bijv. +31612345678')"  spellcheck="false" autocomplete="off"/>
+        <flux:input type="text" name="x_handle" :label="__('X Handle')" wire:model.defer="x_handle" :placeholder="__('bijv. @mijnbedrijf')"  spellcheck="false" autocomplete="off"/>
         <flux:input type="text" name="facebook_handle" :label="__('Facebook Handle')" wire:model.defer="facebook_handle" :placeholder="__('bijv. mijnbedrijf')"  spellcheck="false" autocomplete="off"/>
         <flux:input type="text" name="instagram_handle" :label="__('Instagram Handle')" wire:model.defer="instagram_handle" :placeholder="__('bijv. @mijnbedrijf')"  spellcheck="false" autocomplete="off"/>
         <flux:input type="text" name="tiktok_handle" :label="__('TikTok Handle')" wire:model.defer="tiktok_handle" :placeholder="__('bijv. @mijnbedrijf')"  spellcheck="false" autocomplete="off"/>

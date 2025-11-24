@@ -25,12 +25,14 @@ class Edit extends Component
     public $username;
     public $sftp_password;
     public $application_password;
-    public $twitter_handle;
+    public $x_handle;
     public $facebook_handle;
     public $instagram_handle;
     public $tiktok_handle;
     public $linkedin_handle;
     public $youtube_handle;
+    public $whatsapp_handle;
+
     public $api_key = null;
 
     public function mount($id)
@@ -54,6 +56,14 @@ class Edit extends Component
         $this -> username = $this -> user -> username;
         $this -> sftp_password = $this -> user -> sftp_password;
         $this -> application_password = $this -> user -> application_password;
+        $this->x_handle = $this->user->x_handle;
+        $this->facebook_handle = $this->user->facebook_handle;
+        $this->instagram_handle = $this->user->instagram_handle;
+        $this->tiktok_handle = $this->user->tiktok_handle;
+        $this->linkedin_handle = $this->user->linkedin_handle;
+        $this->youtube_handle = $this->user->youtube_handle;
+        $this->whatsapp_handle = $this->user->whatsapp_handle;
+
     }
 
     public function save(){
@@ -64,8 +74,14 @@ class Edit extends Component
         $this -> user -> username = $this -> username;
         $this -> user -> sftp_password = $this -> sftp_password;
         $this -> user -> application_password = $this -> application_password;
+        $this -> user -> x_handle = $this -> x_handle;
+        $this -> user -> facebook_handle = $this -> facebook_handle;
+        $this -> user -> instagram_handle = $this -> instagram_handle;
+        $this -> user -> tiktok_handle = $this -> tiktok_handle;
+        $this -> user -> linkedin_handle = $this -> linkedin_handle;
+        $this -> user -> youtube_handle = $this -> youtube_handle;
+        $this -> user -> whatsapp_handle = $this -> whatsapp_handle;
         $this -> user -> save();
-
     }
 
     public function generateApiKey(){

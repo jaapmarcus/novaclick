@@ -12,12 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('twitter_handle')->nullable()->after('places_id');
+            $table->string('x_handle')->nullable()->after('places_id');
             $table->string('facebook_handle')->nullable()->after('twitter_handle');
             $table->string('instagram_handle')->nullable()->after('facebook_handle');
             $table->string('tiktok_handle')->nullable()->after('instagram_handle');
             $table->string('linkedin_handle')->nullable()->after('tiktok_handle');
             $table->string('youtube_handle')->nullable()->after('linkedin_handle');
+            $table->string('whatsapp_handle')->nullable()->after('youtube_handle');
         });
     }
 
@@ -27,12 +28,13 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('twitter_handle');
+            $table->dropColumn('x_handle');
             $table->dropColumn('facebook_handle');
             $table->dropColumn('instagram_handle');
             $table->dropColumn('tiktok_handle');
             $table->dropColumn('linkedin_handle');
             $table->dropColumn('youtube_handle');
+            $table->dropColumn('whatsapp_handle');
         });
     }
 };

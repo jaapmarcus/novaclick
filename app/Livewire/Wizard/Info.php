@@ -31,12 +31,13 @@ class Info extends Component
     public $place_id = '';
     public $additional_info='';
     public $services_offered='';
-    public $twitter_handle = '';
+    public $x_handle = '';
     public $facebook_handle = '';
     public $instagram_handle = '';
     public $tiktok_handle = '';
     public $linkedin_handle = '';
     public $youtube_handle = '';
+    public $whatsapp_handle = '';
 
 
 
@@ -144,6 +145,13 @@ class Info extends Component
             'text_color' => $this->text_color,
             'background_color' => $this->background_color,
             'primary_color' => $this->primary_color,
+            'x_handle' => $this->x_handle,
+            'facebook_handle' => $this->facebook_handle,
+            'instagram_handle' => $this->instagram_handle,
+            'tiktok_handle' => $this->tiktok_handle,
+            'linkedin_handle' => $this->linkedin_handle,
+            'youtube_handle' => $this->youtube_handle,
+            'whatsapp_handle' => $this->whatsapp_handle,
         ];
 
         foreach($wizardData as $key => $value){
@@ -179,12 +187,13 @@ class Info extends Component
         $user->wizard = 'completed';
         $user->places_id = $this->place_id;
         $user->domain = $this->domain_name;
-        $user->twitter_handle = $this->twitter_handle;
+        $user->x_handle = $this->x_handle;
         $user->facebook_handle = $this->facebook_handle;
         $user->instagram_handle = $this->instagram_handle;
         $user->tiktok_handle = $this->tiktok_handle;
         $user->linkedin_handle = $this->linkedin_handle;
         $user->youtube_handle = $this->youtube_handle;
+        $user->whatsapp_handle = $this->whatsapp_handle;
 
         $user->save();
 
