@@ -25,6 +25,12 @@ class Edit extends Component
     public $username;
     public $sftp_password;
     public $application_password;
+    public $twitter_handle;
+    public $facebook_handle;
+    public $instagram_handle;
+    public $tiktok_handle;
+    public $linkedin_handle;
+    public $youtube_handle;
     public $api_key = null;
 
     public function mount($id)

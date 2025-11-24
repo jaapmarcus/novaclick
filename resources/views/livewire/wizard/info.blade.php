@@ -119,7 +119,7 @@
         <flux:button type="submit" variant="primary" class="self-end mt-6">{{ __('Volgende stap') }}</flux:button>
     </form>
     @elseif($step == 6)
-    <form wire:submit.prevent="SaveWizard" class="flex flex-col gap-6 mt-4" x-data="{ file_upload:false }">
+    <form wire:submit.prevent="nextStep" class="flex flex-col gap-6 mt-4" x-data="{ file_upload:false }">
     <flux:heading size="lg" level="3" class="mt-6">{{ __('Stap 6: Upload bestanden') }}</flux:heading>
     <flux:separator variant="subtle" />
     <flux:select name="text_images" :label="__('Heb je al teksten en afbeeldingen voor de website?')" wire:model.defer="text_images" x-on:change="file_upload = ( $event.target.value === 'yes' )">
@@ -151,6 +151,18 @@
         <flux:button type="submit" variant="primary" class="self-end mt-6">{{ __('Onboarding voltooien') }}</flux:button>
     </form>
     @elseif($step == 7)
+    <flux:heading size="lg" level="3" class="mt-6">{{ __('Social Media') }}</flux:heading>
+    <flux:separator variant="subtle" />
+    <form wire:submit.prevent="saveWizard" class="flex flex-col gap-6 mt-4">
+        <flux:input type="text" name="twitter_handle" :label="__('Twitter Handle')" wire:model.defer="twitter_handle" :placeholder="__('bijv. @mijnbedrijf')"  spellcheck="false" autocomplete="off"/>
+        <flux:input type="text" name="facebook_handle" :label="__('Facebook Handle')" wire:model.defer="facebook_handle" :placeholder="__('bijv. mijnbedrijf')"  spellcheck="false" autocomplete="off"/>
+        <flux:input type="text" name="instagram_handle" :label="__('Instagram Handle')" wire:model.defer="instagram_handle" :placeholder="__('bijv. @mijnbedrijf')"  spellcheck="false" autocomplete="off"/>
+        <flux:input type="text" name="tiktok_handle" :label="__('TikTok Handle')" wire:model.defer="tiktok_handle" :placeholder="__('bijv. @mijnbedrijf')"  spellcheck="false" autocomplete="off"/>
+        <flux:input type="text" name="linkedin_handle" :label="__('LinkedIn Handle')" wire:model.defer="linkedin_handle" :placeholder="__('bijv. mijn-bedrijf')"  spellcheck="false" autocomplete="off"/>
+        <flux:input type="text" name="youtube_handle" :label="__('YouTube Handle')" wire:model.defer="youtube_handle" :placeholder="__('bijv. mijnbedrijf')"  spellcheck="false" autocomplete="off"/>
+        <flux:button type="submit" variant="primary" class="self-end mt-6">{{ __('Sla Op') }}</flux:button>
+    </form>
+    @elseif($step == 8)
     <flux:heading size="lg" level="3" class="mt-6">{{ __('Onboarding voltooid!') }}</flux:heading>
     <flux:separator variant="subtle" />
     <div class="mt-4 space-y-4">

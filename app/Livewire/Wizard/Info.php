@@ -31,6 +31,12 @@ class Info extends Component
     public $place_id = '';
     public $additional_info='';
     public $services_offered='';
+    public $twitter_handle = '';
+    public $facebook_handle = '';
+    public $instagram_handle = '';
+    public $tiktok_handle = '';
+    public $linkedin_handle = '';
+    public $youtube_handle = '';
 
 
 
@@ -173,6 +179,13 @@ class Info extends Component
         $user->wizard = 'completed';
         $user->places_id = $this->place_id;
         $user->domain = $this->domain_name;
+        $user->twitter_handle = $this->twitter_handle;
+        $user->facebook_handle = $this->facebook_handle;
+        $user->instagram_handle = $this->instagram_handle;
+        $user->tiktok_handle = $this->tiktok_handle;
+        $user->linkedin_handle = $this->linkedin_handle;
+        $user->youtube_handle = $this->youtube_handle;
+
         $user->save();
 
         //redirect to dashboard or another page
