@@ -19,6 +19,7 @@ class Signup extends Component
     public $country = '';
     public $vat_number = '';
     public $phone_number = '';
+    public $coc_number = '';
 
     public $countries = [
         'NL' => 'Netherlands',
@@ -39,6 +40,7 @@ class Signup extends Component
         $this->country = $user->country;
         $this->phone_number = $user->phone_number;
         $this->vat_number = $user->vat_number;
+        $this->coc_number = $user->coc_number;
 
 
 
@@ -74,9 +76,16 @@ class Signup extends Component
         $user->country = $this->country;
         $user->phone_number = $this->phone_number;
         $user->vat_number = $this->vat_number;
+        $user->coc_number = $this->coc_number;
         $user->save();
 
-        //redirect to payment page
-        return redirect()->route('subscribe');
+        //check if there is a subscription plan active
+        if ($user->subscribed('novaNovaclick')) {
+            //redirect to dashboard
+            return redirect()->route('dashboard');
+        }else{
+            //redirect to payment page
+            return redirect()->route('subscribe');
+        }
     }
 }
