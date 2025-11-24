@@ -1,6 +1,8 @@
 <div>
     <flux:heading size="lg" level="2" class="mb-6">{{ __('Wijzig gebruiker') }}</flux:heading>
     <flux:separator variant="subtle" class="mb-6" />
+    <form action="" class="flex flex-col gap-6" wire:submit.prevent="updateUser">
+    @csrf
     <div class="grid auto-rows-min gap-4 md:grid-cols-2">
             <div class="relative">
                 <flux:heading size="md" level="3" class="m-4">{{ __('Gebruikersinformatie') }}</flux:heading>
@@ -40,4 +42,5 @@
                 <flux:input name="places_id" :label="__('Places ID')" type="text" :placeholder="__('Places ID')" wire:model="places_id"  />
             </div>
         </div>
+    </form>
 </div>

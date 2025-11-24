@@ -25,6 +25,7 @@ class Edit extends Component
     public $username;
     public $sftp_password;
     public $application_password;
+    public $api_key = null;
 
     public function mount($id)
     {
@@ -47,11 +48,22 @@ class Edit extends Component
         $this -> username = $this -> user -> username;
         $this -> sftp_password = $this -> user -> sftp_password;
         $this -> application_password = $this -> user -> application_password;
-
     }
 
     public function save(){
+        //update domain, places_id, server_id, username, sftp_password, application_password
+        $this -> user -> domain = $this -> domain;
+        $this -> user -> places_id = $this -> places_id;
+        $this -> user -> server_id = $this -> server_id;
+        $this -> user -> username = $this -> username;
+        $this -> user -> sftp_password = $this -> sftp_password;
+        $this -> user -> application_password = $this -> application_password;
+        $this -> user -> save();
 
+    }
+
+    public function generateApiKey(){
+        $this->api_key = $this->user->createToken('API Token')->plainTextToken;
     }
 
     public function render()
