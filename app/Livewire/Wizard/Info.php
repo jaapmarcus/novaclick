@@ -13,7 +13,7 @@ class Info extends Component
 {
     use WithFileUploads;
     public $step = 1;
-    public $totalSteps = 9;
+    public $totalSteps = 8;
 
     //info fields
     public $website_available = '';
@@ -199,7 +199,7 @@ class Info extends Component
 
         //redirect to dashboard or another page
         // For now, just move to the final step
-        $this->step = 7;
+        $this->step = 8;
 
     }
 
