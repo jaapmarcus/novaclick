@@ -66,7 +66,7 @@ class Edit extends Component
 
     }
 
-    public function save(){
+    public function updateUser(){
         //update domain, places_id, server_id, username, sftp_password, application_password
         $this -> user -> domain = $this -> domain;
         $this -> user -> places_id = $this -> places_id;

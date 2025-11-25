@@ -204,6 +204,15 @@
         <flux:text>{{ __('Achtergrond kleur:') }} {{ $background_color }}</flux:text>
         <flux:text>{{ __('Primaire kleur:') }} {{ $primary_color }}</flux:text>
 
+        <flux:heading size="md" level="4">{{ __('Social Media Handles') }}</flux:heading>
+        <flux:text>{{ __('WhatsApp Handle:') }} {{ $whatsapp_handle }}</flux:text>
+        <flux:text>{{ __('X Handle:') }} {{ $x_handle }}</flux:text>
+        <flux:text>{{ __('Facebook Handle:') }} {{ $facebook_handle }}</flux:text>
+        <flux:text>{{ __('Instagram Handle:') }} {{ $instagram_handle }}</flux:text>
+        <flux:text>{{ __('TikTok Handle:') }} {{ $tiktok_handle }}</flux:text>
+        <flux:text>{{ __('LinkedIn Handle:') }} {{ $linkedin_handle }}</flux:text>
+        <flux:text>{{ __('YouTube Handle:') }} {{ $youtube_handle }}</flux:text>
+
         <flux:heading size="md" level="4">{{ __('Geüploade Bestanden') }}</flux:heading>
         <div class="mt-4 flex flex-col gap-2">
             @foreach ($logo as $logoFile)

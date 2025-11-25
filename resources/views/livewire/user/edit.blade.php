@@ -39,6 +39,10 @@
                 <flux:heading size="md" level="3" class="m-4">{{ __('Acties') }}</flux:heading>
                 <flux:separator variant="subtle" class="mb-4" />
                 <flux:button size="sm" variant="outline" href="{{ route('wordpress.login', $user->id) }}" variant="primary">{{ __('Login in Wordpress') }}</flux:button>
+                <flux:button size="sm" variant="outline" wire:click="generateApiKey" variant="primary" class="mt-2">{{ __('Maak API sleutel aan') }}</flux:button>
+                @if($api_key != null)
+                <flux:input name="api_key" :label="__('API Sleutel')" type="text" :placeholder="__('API Sleutel')" wire:model="api_key" class="mt-2" readonly />
+                @endif
                 <flux:heading size="md" level="3" class="m-4 mt-8">{{ __('Extra Info') }}</flux:heading>
                 <flux:separator variant="subtle" class="mb-4" />
                 <flux:input name="domain" :label="__('Domeinnaam')" type="text" :placeholder="__('Domeinnaam')" wire:model="domain"  />
@@ -47,6 +51,7 @@
                 <flux:input name="sftp_password" :label="__('SFTP Wachtwoord')" type="text" :placeholder="__('SFTP Wachtwoord')" wire:model="sftp_password"  />
                 <flux:input name="application_password" :label="__('Applicatie Wachtwoord')" type="text" :placeholder="__('Applicatie Wachtwoord')" wire:model="application_password"  />
                 <flux:input name="places_id" :label="__('Places ID')" type="text" :placeholder="__('Places ID')" wire:model="places_id"  />
+                <flux:button type="submit" class="mt-6">{{ __('Opslaan') }}</flux:button>
             </div>
         </div>
     </form>
