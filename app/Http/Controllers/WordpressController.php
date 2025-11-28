@@ -15,10 +15,24 @@ class WordpressController extends Controller
             $id = auth()->user()->id;
         }
         $user = \App\Models\User::findOrFail($id);
-        //generate a wordpress login url for this user
-        $wordpressUrl = config('services.wordpress.url');
-        $token = md5($user->email . 'secret_salt'); //simple token generation for example purposes
-        $loginUrl = $wordpressUrl . '/wp-login.php?user=' . urlencode($user->email) . '&token=' . $token;
+        //get domain
+        if(auth()->user()->role == 'admin'){
+            $wp_user_id = 1;
+        }else{
+            $wp_user_id = 2;
+        }
+        $application_password = str_replace(' ','',$user -> application_password);
+        $domain = 'https://'.$user -> domain.'/wp-json/wprl/reset-code';
+        $response = Http::withBasicAuth('novaclick', $application_password)
+            ->post($domain, [
+                'user_id' => $wp_user_id,
+            ]);
+
+        if ($response->failed()) {
+            return response()->json(['error' => 'Failed to log in to WordPress'], $response->status());
+        }
+
+        $loginUrl = 'https://'.$user -> domain.'/wp-json/wprl/login-with-reset-code?user_id='.$wp_user_id.'&reset_code='.$response->json()['reset_code'];
 
         return redirect($loginUrl);
     }
@@ -45,12 +59,27 @@ class WordpressController extends Controller
         if(empty($placeId)){
             return response()->json(['error' => 'No place ID found for user'], 404);
         }
-        $apiKey = config('services.google_places.api_key');
-        $response = Http::withHeaders([
+        $cacheKey = 'places_info_' . $placeId;
+        $cacheTTL = now()->addHours(6); // Cache for 6 hours
+
+        if (cache()->has($cacheKey)) {
+            $data = cache()->get($cacheKey);
+        } else {
+            $apiKey = config('services.google_places.api_key');
+            $response = Http::withHeaders([
             'X-Goog-Api-Key' => $apiKey,
             'X-Goog-FieldMask' => '*',
-        ])
-        ->get('https://places.googleapis.com/v1/places/'.$placeId.'?languageCode=nl-NL');
+            ])
+            ->get('https://places.googleapis.com/v1/places/'.$placeId.'?languageCode=nl-NL');
+
+            $data = json_decode($response, true);
+
+            if ($response->successful()) {
+            cache()->put($cacheKey, $data, $cacheTTL);
+            } else {
+            return response()->json(['error' => 'Failed to fetch place information'], $response->status());
+            }
+        }
 
         $data = json_decode($response, true);
 

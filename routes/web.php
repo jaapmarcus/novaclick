@@ -13,6 +13,8 @@ Route::view('dashboard', 'dashboard')
     ->name('dashboard');
 
 
+Route::get('/download/{id}/{file}', [\App\Http\Controllers\FileController::class, 'download'])->name('download');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('subscribe', \App\Http\Controllers\SubscribeController::class)->name('subscribe');
     Volt::route('invoices', 'invoices')->name('invoices.index');

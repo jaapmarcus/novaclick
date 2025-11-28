@@ -85,6 +85,11 @@ class Edit extends Component
     }
 
     public function generateApiKey(){
+        //check if api key exists
+        if ($this->user->tokens()->count() > 0) {
+            //delete existing api keys
+            $this->user->tokens()->delete();
+        }
         $this->api_key = $this->user->createToken('API Token')->plainTextToken;
     }
 
