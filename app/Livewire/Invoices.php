@@ -10,4 +10,9 @@ class Invoices extends Component
     {
         return view('livewire.invoices');
     }
+
+     #[\Livewire\Attributes\Computed]
+    public function orders(){
+        return auth() -> user() -> orders;
+    }
 }

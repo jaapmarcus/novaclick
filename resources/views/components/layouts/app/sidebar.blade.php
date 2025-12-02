@@ -15,14 +15,21 @@
                 @if(auth()->user()->role == 'admin')
                 <flux:navlist.group :heading="__('Admin')" class="grid">
                     <flux:navlist.item icon="users" :href="route('users.index')" :current="request()->routeIs('users')" wire:navigate>{{ __('Gebruikers') }}</flux:navlist.item>
+                    <flux:navlist.item icon="question-mark-circle" :href="route('faqs.index')" :current="request()->routeIs('faqs')" wire:navigate>{{ __('FAQ') }}</flux:navlist.item>
+                    <flux:navlist.item icon="folder" :href="route('categories.index')" :current="request()->routeIs('categories')" wire:navigate>{{ __('Categorieën') }}</flux:navlist.item>
                 </flux:navlist.group>
-
                 @endif
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                     <flux:navlist.item icon="credit-card" :href="route('signup')" :current="request()->routeIs('signup')" wire:navigate>{{ __('Aanmelden') }}</flux:navlist.item>
+                    @if(auth()->user()->wizard != 'completed')
                     <flux:navlist.item icon="wand-sparkles" :href="route('wizard.info')" :current="request()->routeIs('wizard.info')" wire:navigate>{{ __('Onboarding Wizard') }}</flux:navlist.item>
+                    @endif
+                    @if(auth()->user()->application_password)
+                    <flux:navlist.item icon="lock-open" :href="route('wordpress')" :current="request()->routeIs('wordpress')" wire:navigate>{{ __('WordPress Inloggen') }}</flux:navlist.item>
+                    @endif
                     <flux:navlist.item icon="file" :href="route('invoices.index')" :current="request()->routeIs('invoices')" wire:navigate>{{ __('Rekeningen') }}</flux:navlist.item>
+                    <flux:navlist.item icon="question-mark-circle" :href="route('faq.index')" :current="request()->routeIs('faq')" wire:navigate>{{ __('Veel gestelde vragen') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 
@@ -127,5 +134,6 @@
         {{ $slot }}
 
         @fluxScripts
+        @livewireScripts
     </body>
 </html>

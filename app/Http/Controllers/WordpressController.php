@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Http;
 
 class WordpressController extends Controller
 {
+
+    function wordpress(){
+        return view('wordpress.index');
+    }
+
     function login($id = null)
     {
         if(empty($id)){
@@ -33,7 +38,6 @@ class WordpressController extends Controller
         }
 
         $loginUrl = 'https://'.$user -> domain.'/wp-json/wprl/login-with-reset-code?user_id='.$wp_user_id.'&reset_code='.$response->json()['reset_code'];
-
         return redirect($loginUrl);
     }
 

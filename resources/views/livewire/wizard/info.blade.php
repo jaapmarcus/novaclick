@@ -40,7 +40,7 @@
             <flux:select.option value="yes">{{ __('Ja') }}</flux:select.option>
             <flux:select.option value="no">{{ __('Nee') }}</flux:select.option>
         </flux:select>
-        <div x-show="places_search_check" x-transition">
+        <div x-show="places_search_check" x-transition" class="flex flex-col gap-4">
             <p class="mb-4">{{ __('Zoek uw bedrijf op naam en selecteer de juiste vermelding uit de lijst') }}</p>
             <flux:input.group label="{{ __('Zoek uw bedrijf op naam') }}" >
             <flux:input type="text" name="search_text" wire:model.defer="search_text" wire:change="placeSearch" spellcheck="false" autocomplete="off" />
@@ -66,7 +66,7 @@
             <flux:select.option value="yes">{{ __('Ja') }}</flux:select.option>
             <flux:select.option value="no">{{ __('Nee') }}</flux:select.option>
         </flux:select>
-        <div id="logo-upload" x-show="logo_upload === true" x-transition>
+        <div id="logo-upload" x-show="logo_upload === true" x-transition class="flex flex-col gap-4">
             <flux:file-upload wire:model="logo" multiple label="Upload Logo's">
                 <flux:file-upload.dropzone
                     heading="Drop de bestanden hier of klik om te uploaden"
@@ -127,7 +127,7 @@
             <flux:select.option value="yes">{{ __('Ja') }}</flux:select.option>
             <flux:select.option value="no">{{ __('Nee') }}</flux:select.option>
         </flux:select>
-        <div id="file-upload" x-show="file_upload === true">
+        <div id="file-upload" x-show="file_upload === true" class="flex flex-col gap-4" x-transition>
              <flux:textarea name="teksten" :label="__('Deel een je Dropbox link / Google Docs of Google Drive link')" wire:model.defer="teksten"  />
             <flux:file-upload wire:model="files" multiple label="Upload Bestanden">
                 <flux:file-upload.dropzone

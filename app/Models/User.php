@@ -100,6 +100,8 @@ class User extends Authenticatable  implements MustVerifyEmail
         'email' => $this->email,
         'name' => $this->company_name,
     ];
-}
+    }
+
+
 
 }
