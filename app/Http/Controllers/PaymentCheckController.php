@@ -10,7 +10,7 @@ class PaymentCheckController extends Controller
     {
         sleep(2);
         if(auth()->user()->hasActiveSubscription('default')){
-            return redirect()->route('wizard');
+            return redirect()->route('wizard.info');
         }else{
             return redirect()->route('subscribe');
         }
