@@ -8,6 +8,11 @@ class PaymentCheckController extends Controller
 {
     public function checkpayment()
     {
-       dd('Payment check logic goes here');
+        sleep(2);
+        if(auth()->user()->hasActiveSubscription('default')){
+            return redirect()->route('wizard');
+        }else{
+            return redirect()->route('subscribe');
+        }
     }
 }
