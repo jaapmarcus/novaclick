@@ -67,7 +67,7 @@ return [
             'interval' => [
                 'generator' => AdvancedIntervalGenerator::class,
                 'value' => 1,
-                'period' => 'month', /* day, month or year*/
+                'period' => 'day', /* day, month or year*/
                 'monthOverflow' => true,
             ],
 
