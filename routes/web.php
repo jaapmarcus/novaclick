@@ -26,6 +26,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('wordpress/', [\App\Http\Controllers\WordpressController::class, 'wordpress'])->name('wordpress');
     Route::get('wordpress/login/', [\App\Http\Controllers\WordpressController::class, 'login'])->name('wordpress.client.login');
     Volt::route('faq', 'faq')->name('faq.index');
+    Route::get('checkpayment/', [\App\Http\Controllers\SubscribeController::class, 'checkpayment'])->name('checkpayment');
+    Route::get('checkpayment/first/', [\App\Http\Controllers\SubscribeController::class, 'checkpayment'])->name('checkpayment.first');
 });
 
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
