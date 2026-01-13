@@ -102,6 +102,19 @@ class User extends Authenticatable  implements MustVerifyEmail
     ];
     }
 
+    public static function convertCountryName($countryCode)
+    {
+        $countries = [
+            'NL' => 'Netherlands',
+            'BE' => 'Belgium',
+            'DE' => 'Germany',
+            'FR' => 'France',
+            'ES' => 'Spain',
+            // Add more country codes and names as needed
+        ];
+
+        return $countries[$countryCode] ?? $countryCode;
+    }
 
 
 }
