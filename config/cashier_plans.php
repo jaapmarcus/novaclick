@@ -40,7 +40,7 @@ return [
          * The plan reference.
          */
         //names up for change
-        'Novaclick' => [
+        'start' => [
 
             /**
              * The amount to be billed each billing cycle.
@@ -51,7 +51,7 @@ return [
                  * A string containing the exact amount you want to charge each billing cycle, in the given currency.
                  * Make sure to set the right amount of decimals. Non-string values are not accepted by Mollie.
                  */
-                'value' => '30.00',
+                'value' => '50.00',
 
                 /**
                  * An ISO 4217 currency code. The currencies supported depend on the payment methods that are enabled on
@@ -67,14 +67,60 @@ return [
             'interval' => [
                 'generator' => AdvancedIntervalGenerator::class,
                 'value' => 1,
-                'period' => 'day', /* day, month or year*/
+                'period' => 'month', /* day, month or year*/
                 'monthOverflow' => true,
             ],
 
             /**
              * The text to appear on the invoice.
              */
-            'description' => 'NovaClick abonnement',
+            'description' => 'NovaClick Start abonnement',
+
+        /**
+         * The chain of subscription OrderItem preprocessors. These are called right before the Subscription's
+         * OrderItem is processed into an OrderItem. You can use this for calculating variable costs a.k.a. metered
+         * billing. Make sure the preprocessors extend the BaseOrderItemProcessor.
+         */
+            //'order_item_preprocessors' => [
+            //    ProcessCoupons::class,
+            //    PersistOrderItems::class,
+            //],
+        ],
+        'automatisch' => [
+
+            /**
+             * The amount to be billed each billing cycle.
+             */
+            'amount' => [
+
+                /**
+                 * A string containing the exact amount you want to charge each billing cycle, in the given currency.
+                 * Make sure to set the right amount of decimals. Non-string values are not accepted by Mollie.
+                 */
+                'value' => '75.00',
+
+                /**
+                 * An ISO 4217 currency code. The currencies supported depend on the payment methods that are enabled on
+                 * your Mollie account.
+                 */
+                'currency' => 'EUR',
+            ],
+
+            /**
+             * The length of the billing cycle.
+             */
+            // 'interval' => '1 month' or
+            'interval' => [
+                'generator' => AdvancedIntervalGenerator::class,
+                'value' => 1,
+                'period' => 'month', /* day, month or year*/
+                'monthOverflow' => true,
+            ],
+
+            /**
+             * The text to appear on the invoice.
+             */
+            'description' => 'NovaClick Automatisch abonnement',
 
         /**
          * The chain of subscription OrderItem preprocessors. These are called right before the Subscription's

@@ -6,13 +6,13 @@ return [
      * The default webhook url is called by Mollie on payment status updates. You can use either a relative or
      * absolute url.
      */
-    'webhook_url' => 'webhooks/mollie',
+    'webhook_url' => config('app.url') . '/webhooks/mollie',
 
     /**
      * The default aftercare webhook url is called by Mollie on refunds and chargebacks. You can use either a relative or
      * absolute url.
      */
-    'aftercare_webhook_url' => 'webhooks/mollie/aftercare',
+    'aftercare_webhook_url' => config('app.url') . 'webhooks/mollie/aftercare',
 
     /**
      * The default locale passed to Mollie for configuring the checkout screen. Set to null to let Mollie handle it for
@@ -52,7 +52,7 @@ return [
          * The first payment webhook url is called by Mollie on first payment status updates. Can be overridden per
          * Plan. You can use either a relative or absolute url.
          */
-        'webhook_url' => 'webhooks/mollie/first-payment',
+        'webhook_url' => config('app.url') . '/webhooks/mollie/first-payment',
 
         /**
          * Array of allowed Mollie payment methods for the first payment. Make sure the methods are

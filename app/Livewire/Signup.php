@@ -9,6 +9,7 @@ use Livewire\Component;
 
 class Signup extends Component
 {
+    public $plan = null;
     public $companies = null;
     public $company_name = '';
     public $address = '';

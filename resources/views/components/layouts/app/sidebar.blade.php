@@ -21,7 +21,9 @@
                 @endif
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                    <flux:navlist.item icon="credit-card" :href="route('signup')" :current="request()->routeIs('signup')" wire:navigate>{{ __('Aanmelden') }}</flux:navlist.item>
+                    @if(!auth()->user()->subscribed('Novaclick'))
+                    <flux:navlist.item icon="shopping-cart" :href="route('plan')" :current="request()->routeIs('plan')" wire:navigate>{{ __('Aanmelden') }}</flux:navlist.item>
+                    @endif
                     @if(auth()->user()->wizard != 'completed')
                     <flux:navlist.item icon="wand-sparkles" :href="route('wizard.info')" :current="request()->routeIs('wizard.info')" wire:navigate>{{ __('Onboarding Wizard') }}</flux:navlist.item>
                     @endif

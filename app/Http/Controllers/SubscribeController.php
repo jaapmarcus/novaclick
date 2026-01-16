@@ -13,13 +13,14 @@ class SubscribeController extends Controller
     public function __invoke()
     {
         $user = Auth::user();
-        $plan = 'Novaclick'; // The plan identifier from config/cashier_plans.php
+        $plan = session('selected_plan'); // The plan identifier from config/cashier_plans.php
         $name = 'Novaclick'; // The name of the subscription
         if(!$user->subscribed($name, $plan)) {
 
             $result = $user->newSubscription($name, $plan)->create();
 
             if(is_a($result, RedirectToCheckoutResponse::class)) {
+
                 return $result; // Redirect to Mollie checkout
             }
 

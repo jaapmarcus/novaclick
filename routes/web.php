@@ -21,6 +21,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('subscribe', \App\Http\Controllers\SubscribeController::class)->name('subscribe');
     Volt::route('invoices', 'invoices')->name('invoices.index');
     Volt::route('invoices/{invoice}', 'invoice.show')->name('invoices.show');
+    Volt::route('plan', 'plan')->name('plan');
     Volt::route('signup', 'signup')->name('signup');
     Volt::route('wizard/', 'wizard.info')->name('wizard.info');
     Route::get('wordpress/', [\App\Http\Controllers\WordpressController::class, 'wordpress'])->name('wordpress');
