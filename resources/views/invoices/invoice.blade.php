@@ -23,6 +23,9 @@
                     <td style="padding-right:20px;">{{$item -> description}}</td>
                     <td style="text-align:right;">€ {{number_format($item -> unit_price / 100, 2, ',', '.')}}</td>
                 </tr>
+                <tr>
+                    <td colspan="2" style="color:#666666;">{{ __($item -> description_extra_lines[0]) }}</td>
+                </tr>
             @endforeach
             <tr>
                 <td style="border-top:1px solid #000000;padding-top:10px;">Totaal exclusief BTW</td>
