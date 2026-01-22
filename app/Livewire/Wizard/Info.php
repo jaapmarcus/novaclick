@@ -38,6 +38,8 @@ class Info extends Component
     public $linkedin_handle = '';
     public $youtube_handle = '';
     public $whatsapp_handle = '';
+    public $place_id_manual = '';
+    public $last_check = null;
 
 
 
@@ -63,15 +65,22 @@ class Info extends Component
 
 
     public function whois(){
+        if($this -> last_check == $this->domain_name){
+            return;
+        }
+        $this -> last_check = $this->domain_name;
         //check if domain extension is allowed
         $allowed_extensions = ['.com', '.be', '.de', '.nl', '.eu',  '.fr', '.org','.it','.ch', '.at'];
         $extension = substr($this->domain_name, strrpos($this->domain_name, '.'));
         if(!in_array($extension, $allowed_extensions)){
             $this->website_available = 'not_allowed';
-            return;
+            return false;
         }
         //check if the domain is free via whois api
         $this->website_available = OpenProvider::whois($this->domain_name);
+        if($this->website_available === false){
+            return false;
+        }
 
     }
 
@@ -125,6 +134,9 @@ class Info extends Component
         //save all wizard data to database
         $user = auth()->user();
 
+        if($this -> places_id === '' && $this -> place_id_manual !== ''){
+            $this -> place_id = $this -> place_id_manual;
+        }
         //save wizard steps to wizard table
         $wizardData = [
             'website_available' => $this->website_available,

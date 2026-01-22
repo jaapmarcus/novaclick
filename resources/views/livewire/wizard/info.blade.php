@@ -3,7 +3,7 @@
     <flux:separator variant="subtle" />
 
     @if($step == 1)
-    <form wire:submit.prevent="nextStep" class="flex flex-col gap-6 mt-4" x-data="{ logo_upload:false, file_upload:false }">
+    <form wire:submit.prevent="nextStep" class="flex flex-col gap-6 mt-4" onkeydown="if(event.key === 'Enter') event.preventDefault();">
         <flux:heading size="lg" level="3" class="mt-6">{{ __('Stap 1: Domeinaam') }}</flux:heading>
         <flux:separator variant="subtle" />
         <flux:select type="text" name="website_present" :label="__('Heeft u al een website?')" wire:model.defer="website_present">
@@ -12,14 +12,15 @@
             <flux:select.option value="no">{{ __('Nee') }}</flux:select.option>
         </flux:select>
         <flux:input.group label="{{ __('Website domeinnaam') }}">
-            <flux:input type="text" name="domain_name"  wire:model.defer="domain_name" :placeholder="__('mijn-website.nl')" wire:change="whois" spellcheck="false" autocomplete="off"/>
-            <flux:button variant="primary" wire:click="whois">{{ __('Controleer beschikbaarheid') }}</flux:button>
+            <flux:input type="text" name="domain_name" wire:model.defer="domain_name" :placeholder="__('mijn-website.nl')" wire:change="whois" spellcheck="false" autocomplete="off" wire:keyup.enter="whois"/>
+            <flux:button variant="primary" wire:click="whois" >{{ __('Controleer beschikbaarheid') }}</flux:button>
         </flux:input.group>
         @if($website_available === false)
             <div class="text-sm bg-red-100 text-red-800 p-3 rounded-md">
-                {{ __('De door u opgegeven domeinnaam is niet beschikbaar. Indien u de domeinnaam wilt overzetten, vul dan de verhuis token in of kies een andere domeinaam') }}
+                {{ __('De door u opgegeven domeinnaam is niet beschikbaar. Indien u de domeinnaam wilt overzetten, vul dan de verhuis token in of kies een andere domeinnaam.') }}
+                <a href="{{ route('faq.index') }}" class="underline" target="_blank">{{ __('Bekijk onze FAQ voor meer informatie over domein verhuizingen.') }}</a>
             </div>
-            <flux:input type="text" name="transfer_token" :label="__('Wat is de verhuis token?')" wire:model.defer="transfer_token" :placeholder="__('Verhuis token')"  spellcheck="false" autocomplete="off"/>
+            <flux:input type="text" name="transfer_token" :label="__('Wat is de verhuis token?')" wire:model.defer="transfer_token" :placeholder="__('Verhuis token')" spellcheck="false" autocomplete="off"/>
         @elseif($website_available === true)
             <div class="text-sm bg-green-100 text-green-800 p-3 rounded-md">
                 {{ __('De door u opgegeven domeinnaam is beschikbaar.') }}
@@ -29,10 +30,12 @@
                 {{ __('De door u opgegeven domeinnaam heeft een extensie die wij niet ondersteunen. Ondersteunde extensies zijn: .nl, .be, .com, .eu, .de, .fr, .org, .it, .ch, .at') }}
             </div>
         @endif
-        <flux:button type="submit" variant="primary" class="self-end mt-6">{{ __('Volgende stap') }}</flux:button>
+    <div class="flex gap-3 self-end mt-6">
+        <flux:button type="submit" variant="primary">{{ __('Volgende stap') }}</flux:button>
+    </div>
     </form>
     @elseif($step == 2)
-    <form wire:submit.prevent="nextStep" class="flex flex-col gap-6 mt-4"  x-data="{ places_search_check:false }">
+    <form wire:submit.prevent="nextStep" class="flex flex-col gap-6 mt-4"  x-data="{ places_search_check: {{ $has_places === 'yes' ? 'true' : 'false' }} }">
         <flux:heading size="lg" level="3" class="mt-6">{{ __('Stap 2: Google Places') }}</flux:heading>
         <flux:separator variant="subtle" />
         <flux:select type="text" name="has_places" :label="__('Heeft u een Google Mijn Bedrijf vermelding?')" wire:model.defer="has_places" wire:change="placeSearch" x-on:change="places_search_check = $event.target.value === 'yes' ? true : false">
@@ -47,15 +50,20 @@
             <flux:button variant="primary" wire:click="placeSearch">{{ __('Zoek vermelding') }}</flux:button>
             </flux:input.group>
             <flux:select type="text" name="place_id" :label="__('Selecteer uw bedrijf')" wire:model.defer="place_id">
-                <flux:select.option value="">{{ __('Selecteer een optie') }}</flux:select.option>
+                <flux:select.option  value="">{{ __('Selecteer een optie') }}</flux:select.option>
                 @if(!empty($places))
                     @foreach($places as $place)
                         <flux:select.option value="{{ $place['place_id'] }}">{{ $place['name'] }} - {{ $place['formatted_address'] }}</flux:select.option>
                     @endforeach
                 @endif
             </flux:select>
+            <flux:text>Of geef je Google Place ID op: <a href="https://developers.google.com/maps/documentation/places/web-service/place-id">Hoe mijn place ID vinden?</a></flux:text>
+            <flux:input type="text" name="place_id_manual" :label="__('Google Place ID')" wire:model.defer="place_id_manual" :placeholder="__('Bijv. ChIJN1t_tDeuEmsRUsoyG83frY4')"  spellcheck="false" autocomplete="off"/>
         </div>
-        <flux:button type="submit" variant="primary" class="self-end mt-6">{{ __('Volgende stap') }}</flux:button>
+        <div class="flex gap-3 self-end mt-6">
+            <flux:button type="button" variant="outline" wire:click="previousStep">{{ __('Vorige stap') }}</flux:button>
+            <flux:button type="submit" variant="primary">{{ __('Volgende stap') }}</flux:button>
+        </div>
     </form>
     @elseif($step == 3)
     <form wire:submit.prevent="nextStep" class="flex flex-col gap-6 mt-4" x-data="{ logo_upload:false }">
@@ -86,7 +94,10 @@
                 @endforeach
             </div>
         </div>
-        <flux:button type="submit" variant="primary" class="self-end mt-6">{{ __('Volgende stap') }}</flux:button>
+        <div class="flex gap-3 self-end mt-6">
+            <flux:button type="button" variant="outline" wire:click="previousStep">{{ __('Vorige stap') }}</flux:button>
+            <flux:button type="submit" variant="primary">{{ __('Volgende stap') }}</flux:button>
+        </div>
     </form>
     @elseif($step == 4)
     <form wire:submit.prevent="nextStep" class="flex flex-col gap-6 mt-4">
@@ -104,7 +115,10 @@
             <flux:input type="text" name="primary_color" id="primary_color" wire:model.defer="primary_color" x-data="{}"/>
             <flux:input type="color" name="primary_color_picker" wire:model.defer="primary_color_picker" x-on:change="document.getElementById('primary_color').value = $event.target.value" class="w-3xs"/>
         </flux:input.group>
-        <flux:button type="submit" variant="primary" class="self-end mt-6">{{ __('Volgende stap') }}</flux:button>
+        <div class="flex gap-3 self-end mt-6">
+            <flux:button type="button" variant="outline" wire:click="previousStep">{{ __('Vorige stap') }}</flux:button>
+            <flux:button type="submit" variant="primary">{{ __('Volgende stap') }}</flux:button>
+        </div>
     </form>
     @elseif($step == 5)
     <form wire:submit.prevent="nextStep" class="flex flex-col gap-6 mt-4">
@@ -116,7 +130,10 @@
         <flux:textarea name="website_goals" :label="__('Wat wil je dat bezoekers doen op de website?')" wire:model.defer="website_goals" :placeholder="__('Vul hier de doelen van de website in...')" />
         <flux:textarea name="desired_pages" :label="__('Welke pagina’s wil je op de site? (maximaal acht)')" wire:model.defer="desired_pages" :placeholder="__('Bijv. Home, Over ons, Diensten, Contact...')" />
         <flux:textarea name="contact_form" :label="__('Welke velden moeten er in het contactformulier komen?')" wire:model.defer="contact_form" :placeholder="__('Bijv. Naam, E-mail, Bericht...')" />
-        <flux:button type="submit" variant="primary" class="self-end mt-6">{{ __('Volgende stap') }}</flux:button>
+        <div class="flex gap-3 self-end mt-6">
+            <flux:button type="button" variant="outline" wire:click="previousStep">{{ __('Vorige stap') }}</flux:button>
+            <flux:button type="submit" variant="primary">{{ __('Volgende stap') }}</flux:button>
+        </div>
     </form>
     @elseif($step == 6)
     <form wire:submit.prevent="nextStep" class="flex flex-col gap-6 mt-4" x-data="{ file_upload:false }">
@@ -148,7 +165,10 @@
                 @endforeach
             </div>
         </div>
-        <flux:button type="submit" variant="primary" class="self-end mt-6">{{ __('Onboarding voltooien') }}</flux:button>
+        <div class="flex gap-3 self-end mt-6">
+            <flux:button type="button" variant="outline" wire:click="previousStep">{{ __('Vorige stap') }}</flux:button>
+            <flux:button type="submit" variant="primary">{{ __('Volgende stap') }}</flux:button>
+        </div>
     </form>
     @elseif($step == 7)
     <flux:heading size="lg" level="3" class="mt-6">{{ __('Social Media') }}</flux:heading>
@@ -161,7 +181,10 @@
         <flux:input type="text" name="tiktok_handle" :label="__('TikTok Handle')" wire:model.defer="tiktok_handle" :placeholder="__('bijv. @mijnbedrijf')"  spellcheck="false" autocomplete="off"/>
         <flux:input type="text" name="linkedin_handle" :label="__('LinkedIn Handle')" wire:model.defer="linkedin_handle" :placeholder="__('bijv. mijn-bedrijf')"  spellcheck="false" autocomplete="off"/>
         <flux:input type="text" name="youtube_handle" :label="__('YouTube Handle')" wire:model.defer="youtube_handle" :placeholder="__('bijv. mijnbedrijf')"  spellcheck="false" autocomplete="off"/>
-        <flux:button type="submit" variant="primary" class="self-end mt-6">{{ __('Sla Op') }}</flux:button>
+        <div class="flex gap-3 self-end mt-6">
+            <flux:button type="button" variant="outline" wire:click="previousStep">{{ __('Vorige stap') }}</flux:button>
+            <flux:button type="submit" variant="primary">{{ __('Volgende stap') }}</flux:button>
+        </div>
     </form>
     @elseif($step == 8)
     <flux:heading size="lg" level="3" class="mt-6">{{ __('Onboarding voltooid!') }}</flux:heading>

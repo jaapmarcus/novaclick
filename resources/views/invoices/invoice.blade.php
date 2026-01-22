@@ -13,7 +13,9 @@
         <p><strong>{{$client -> company_name}}</strong><br />
         {{$client -> address}} {{ $client -> house_number}}<br />
         {{$client -> postalcode}} {{$client -> city}}<br />
-        {{\App\Models\User::convertCountryName($client -> country)}}</p>
+        {{\App\Models\User::convertCountryName($client -> country)}}<br />
+        @if(!empty($client -> coc_number))KVK {{$client -> coc_number}}@endif<br />
+        BTW {{$client -> vat_number}}</p>
 
         <h2>Factuur #{{$invoice -> id()}}</h2>
         <p>Datum: {{$invoice -> date()->format('d-m-Y')}}</p>
